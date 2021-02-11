@@ -22,15 +22,40 @@ int main()
 
 int time_of_sort(void (*f)(vector<int> ))
 {
+    int a;
     vector<int> vec(10000);
     for(int i = 0; i<vec.size(); i++)
-        vec[i] = vec.size()-i;
+        vec[i]=vec.size()-i;
+    cout<<"Do you want to stop measurement for some time ?" << endl 
+        << "if yes say 1, if no say 0:";
+    cin>> a;
+    a==1? pause() : void();
     auto t_start = chrono::system_clock::now();
     f(vec);
     auto t_end = chrono::system_clock::now();
-    auto result = std::chrono::duration_cast<chrono::milliseconds>(t_end - t_start);
+    auto result =
+    std::chrono::duration_cast<chrono::milliseconds>(t_end - t_start);
     return result.count();
 }
+
+void pause()
+{
+    int sleep_sec;
+    cout << "For what amount of seconds? " << endl ;
+    cin >> sleep_sec;
+    auto start = chrono::system_clock::now();
+    bool t = true;
+    while(t)
+    {
+        auto b = chrono::system_clock::now();
+        auto result = chrono::duration_cast<chrono::seconds>(b-start);
+        if (result.count() > sleep_sec)  
+        {
+            (t = false);
+        }
+    }
+}
+
 
 void fast_sort(vector<int> vec)
 {
