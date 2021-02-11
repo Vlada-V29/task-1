@@ -7,6 +7,7 @@ using namespace std;
 
 vector<int> my_sort(vector<int>);
 int time_of_sort(void (*f)(vector<int>));
+void pause();
 void fast_sort(vector<int>);
 void slow_sort(vector<int>);
 
